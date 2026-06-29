@@ -169,6 +169,47 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001s!important;transition-duration:.001s!important}}
 .bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none;opacity:0.38;filter:brightness(0.55) saturate(1.1)}
 </style>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogItmF2LnYp9mE2YXZiiIsICJzaG9ydF9uYW1lIjogItmF2LnYp9mE2YXZiiIsICJkZXNjcmlwdGlvbiI6ICLYqti32KjZitmCINin2YTZhdi52KfZhNmFINin2YTYs9mK2KfYrdmK2Kkg2YjYp9mE2K/ZitmG2YrYqSDZgdmKINiq2YjZhtizIiwgInN0YXJ0X3VybCI6ICIuIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwMjBiMmUiLCAidGhlbWVfY29sb3IiOiAiIzAyMGIyZSIsICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsICJsYW5nIjogImFyIiwgImRpciI6ICJydGwiLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpSUhacFpYZENiM2c5SWpBZ01DQTFNVElnTlRFeUlqNEtJQ0E4Y21WamRDQjNhV1IwYUQwaU5URXlJaUJvWldsbmFIUTlJalV4TWlJZ2NuZzlJamd3SWlCbWFXeHNQU0lqTURJd1lqSmxJaTgrQ2lBZ1BHTnBjbU5zWlNCamVEMGlNalUySWlCamVUMGlNalUySWlCeVBTSXlNakFpSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUkyWm1aRGN3TUNJZ2MzUnliMnRsTFhkcFpIUm9QU0kySWk4K0NpQWdQSEJ2YkhsbmIyNGdjRzlwYm5SelBTSXlOVFlzTVRBd0lESTNOU3d4TmpVZ016UTFMREUyTlNBeU9UQXNNakExSURNeE1Dd3lOekFnTWpVMkxESXpNaUF5TURJc01qY3dJREl5TWl3eU1EVWdNVFkzTERFMk5TQXlNemNzTVRZMUlpQm1hV3hzUFNJalptWmtOekF3SWk4K0NpQWdQSFJsZUhRZ2VEMGlNalUySWlCNVBTSXpPREFpSUdadmJuUXRabUZ0YVd4NVBTSnpaWEpwWmlJZ1ptOXVkQzF6YVhwbFBTSXhNVEFpSUhSbGVIUXRZVzVqYUc5eVBTSnRhV1JrYkdVaUlHWnBiR3c5SWlObVptUTNNREFpUHRtRjJMbllwOW1FMllYWmlqd3ZkR1Y0ZEQ0S1BDOXpkbWMrIiwgInNpemVzIjogIjE5MngxOTIiLCAidHlwZSI6ICJpbWFnZS9zdmcreG1sIn0sIHsic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIWnBaWGRDYjNnOUlqQWdNQ0ExTVRJZ05URXlJajRLSUNBOGNtVmpkQ0IzYVdSMGFEMGlOVEV5SWlCb1pXbG5hSFE5SWpVeE1pSWdjbmc5SWpnd0lpQm1hV3hzUFNJak1ESXdZakpsSWk4K0NpQWdQR05wY21Oc1pTQmplRDBpTWpVMklpQmplVDBpTWpVMklpQnlQU0l5TWpBaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpUMGlJMlptWkRjd01DSWdjM1J5YjJ0bExYZHBaSFJvUFNJMklpOCtDaUFnUEhCdmJIbG5iMjRnY0c5cGJuUnpQU0l5TlRZc01UQXdJREkzTlN3eE5qVWdNelExTERFMk5TQXlPVEFzTWpBMUlETXhNQ3d5TnpBZ01qVTJMREl6TWlBeU1ESXNNamN3SURJeU1pd3lNRFVnTVRZM0xERTJOU0F5TXpjc01UWTFJaUJtYVd4c1BTSWpabVprTnpBd0lpOCtDaUFnUEhSbGVIUWdlRDBpTWpVMklpQjVQU0l6T0RBaUlHWnZiblF0Wm1GdGFXeDVQU0p6WlhKcFppSWdabTl1ZEMxemFYcGxQU0l4TVRBaUlIUmxlSFF0WVc1amFHOXlQU0p0YVdSa2JHVWlJR1pwYkd3OUlpTm1abVEzTURBaVB0bUYyTG5ZcDltRTJZWFppand2ZEdWNGRENEtQQzl6ZG1jKyIsICJzaXplcyI6ICI1MTJ4NTEyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
+  <!-- PWA Icons -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjgwIiBmaWxsPSIjMDIwYjJlIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDcwMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIyNTYsMTAwIDI3NSwxNjUgMzQ1LDE2NSAyOTAsMjA1IDMxMCwyNzAgMjU2LDIzMiAyMDIsMjcwIDIyMiwyMDUgMTY3LDE2NSAyMzcsMTY1IiBmaWxsPSIjZmZkNzAwIi8+CiAgPHRleHQgeD0iMjU2IiB5PSIzODAiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmQ3MDAiPtmF2LnYp9mE2YXZijwvdGV4dD4KPC9zdmc+">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjgwIiBmaWxsPSIjMDIwYjJlIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZDcwMCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIyNTYsMTAwIDI3NSwxNjUgMzQ1LDE2NSAyOTAsMjA1IDMxMCwyNzAgMjU2LDIzMiAyMDIsMjcwIDIyMiwyMDUgMTY3LDE2NSAyMzcsMTY1IiBmaWxsPSIjZmZkNzAwIi8+CiAgPHRleHQgeD0iMjU2IiB5PSIzODAiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmQ3MDAiPtmF2LnYp9mE2YXZijwvdGV4dD4KPC9zdmc+">
+  <!-- PWA Install prompt + Service Worker -->
+  <script>
+  // Register inline Service Worker via blob
+  if('serviceWorker' in navigator){
+    const swCode="\nconst CACHE='maalimi-v1';\nconst ASSETS=[];\nself.addEventListener('install',e=>{self.skipWaiting();});\nself.addEventListener('activate',e=>{\n  e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));\n  self.clients.claim();\n});\nself.addEventListener('fetch',e=>{\n  if(e.request.method!=='GET')return;\n  e.respondWith(\n    caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{\n      if(res&&res.status===200){\n        const clone=res.clone();\n        caches.open(CACHE).then(c=>c.put(e.request,clone));\n      }\n      return res;\n    }).catch(()=>caches.match(e.request)))\n  );\n});\n";
+    const blob=new Blob([swCode],{type:'text/javascript'});
+    const swUrl=URL.createObjectURL(blob);
+    window.addEventListener('load',()=>{
+      navigator.serviceWorker.register(swUrl).then(r=>console.log('SW registered',r)).catch(e=>console.log('SW error',e));
+    });
+  }
+
+  // Install banner
+  let deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault();
+    deferredPrompt=e;
+    showInstallBanner();
+  });
+  function showInstallBanner(){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='flex';
+  }
+  function installPWA(){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='none';
+    if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;});}
+  }
+  function dismissPWA(){
+    const banner=document.getElementById('pwa-banner');
+    if(banner)banner.style.display='none';
+    localStorage.setItem('pwa-dismissed','1');
+  }
+  window.addEventListener('appinstalled',()=>{const b=document.getElementById('pwa-banner');if(b)b.style.display='none';});
+  </script>
 </head>
 <body>
 
@@ -610,5 +651,33 @@ initMap();
 locate();          // resolves GPS → search() + loadPrayer()
 loadPrayer();      // immediate render with best-known coords
 </script>
+
+<style>
+#pwa-banner{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99999;
+background:linear-gradient(135deg,rgba(2,9,40,0.97),rgba(6,18,80,0.97));
+border:1.5px solid rgba(255,215,0,0.6);border-radius:18px;padding:14px 18px;
+box-shadow:0 0 30px rgba(255,215,0,0.35);backdrop-filter:blur(20px);
+align-items:center;gap:12px;width:min(90vw,400px);font-family:Tajawal,sans-serif;direction:rtl;}
+#pwa-banner .pwa-icon{font-size:28px;flex-shrink:0}
+#pwa-banner .pwa-text{flex:1}
+#pwa-banner .pwa-title{font-size:14px;font-weight:800;color:#ffd700;margin-bottom:2px}
+#pwa-banner .pwa-sub{font-size:11px;color:#d4b86a;line-height:1.4}
+#pwa-banner .pwa-btns{display:flex;gap:8px;flex-shrink:0}
+#pwa-banner .btn-install{background:linear-gradient(135deg,#c8860a,#ffd700);color:#020b2e;border:none;
+border-radius:10px;padding:8px 14px;font-family:Tajawal,sans-serif;font-size:12px;font-weight:800;cursor:pointer;}
+#pwa-banner .btn-dismiss{background:transparent;color:#d4b86a;border:1px solid rgba(212,160,23,0.3);
+border-radius:10px;padding:8px 10px;font-size:12px;cursor:pointer;font-family:Tajawal,sans-serif;}
+</style>
+<div id="pwa-banner">
+  <div class="pwa-icon">🕌</div>
+  <div class="pwa-text">
+    <div class="pwa-title">تثبيت معالمي</div>
+    <div class="pwa-sub">أضف التطبيق إلى شاشتك الرئيسية للوصول السريع</div>
+  </div>
+  <div class="pwa-btns">
+    <button class="btn-install" onclick="installPWA()">تثبيت</button>
+    <button class="btn-dismiss" onclick="dismissPWA()">✕</button>
+  </div>
+</div>
 </body>
 </html>
