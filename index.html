@@ -604,6 +604,21 @@ async function fetchWikiSummary(s){
 function infoStateHtml(msg,spin){
   return '<div class="info-state">'+(spin?'<div class="spinner"></div>':'')+msg+'</div>';
 }
+function conciseText(text,maxChars){
+  maxChars=maxChars||260;
+  if(!text) return '';
+  const sentences=(text.match(/[^.!؟]+[.!؟]?/g)||[text]).map(s=>s.trim()).filter(Boolean);
+  let out='';
+  for(let i=0;i<sentences.length;i++){
+    const s=sentences[i];
+    if(out && (out.length+s.length)>maxChars) break;
+    out+=(out?' ':'')+s;
+    if(out.length>=maxChars*0.6 && i>=1) break;
+  }
+  if(!out) out=text.slice(0,maxChars);
+  if(out.length<text.length && !/[.!؟]$/.test(out)) out+='…';
+  return out;
+}
 async function showInfo(idx){
   const s=(window.currentShown||[])[idx];
   if(!s) return;
@@ -611,19 +626,19 @@ async function showInfo(idx){
   overlay.classList.add('show');
   body.innerHTML='<div class="info-title" style="padding-left:38px">'+esc(s.name)+'</div>'+
     '<div class="info-type">'+typeLbl(s.type)+' · 📍 '+distTxt(s.dist)+'</div>'+
-    infoStateHtml('جارٍ جلب المعلومات من ويكيبيديا…',true);
+    infoStateHtml('جارٍ تحضير المعلومات…',true);
   let data=null;
   try{ data=await fetchWikiSummary(s); }catch(e){ data=null; }
   if(!overlay.classList.contains('show')) return; // closed meanwhile
   if(!data || !data.extract){
     body.innerHTML='<div class="info-title" style="padding-left:38px">'+esc(s.name)+'</div>'+
       '<div class="info-type">'+typeLbl(s.type)+' · 📍 '+distTxt(s.dist)+'</div>'+
-      infoStateHtml('لم يتم العثور على معلومات ويكيبيديا لهذا المعلم.',false);
+      infoStateHtml('لا تتوفر معلومات عن هذا المعلم حالياً.',false);
     return;
   }
   const thumb=data.thumbnail&&data.thumbnail.source?'<img class="info-thumb" src="'+data.thumbnail.source+'" alt="">':'';
-  const extract=esc(data.extract||'');
-  const pageUrl=(data.content_urls&&data.content_urls.desktop&&data.content_urls.desktop.page)||'';
+  const summary=conciseText(data.extract||'',260);
+  const extract=esc(summary);
   body.innerHTML=
     '<div class="info-title">'+esc(data.title||s.name)+'</div>'+
     '<div class="info-type">'+typeLbl(s.type)+' · 📍 '+distTxt(s.dist)+'</div>'+
@@ -631,18 +646,16 @@ async function showInfo(idx){
     '<div class="info-extract" id="info-extract">'+extract+'</div>'+
     '<div class="info-actions">'+
       '<button class="info-btn listen" id="info-listen">🔊 استمع للمعلومات</button>'+
-      (pageUrl?'<a class="info-btn source" target="_blank" rel="noopener" href="'+pageUrl+'">ويكيبيديا ↗</a>':'')+
-    '</div>'+
-    '<div class="info-src">المصدر: ويكيبيديا</div>';
+    '</div>';
   const listenBtn=$('info-listen');
   listenBtn.onclick=()=>{
     if(speaking){ stopTTS(); listenBtn.classList.remove('speaking'); listenBtn.textContent='🔊 استمع للمعلومات'; return; }
     listenBtn.classList.add('speaking'); listenBtn.textContent='⏹ إيقاف القراءة';
-    speak((data.title?data.title+'. ':'')+data.extract);
+    speak((data.title?data.title+'. ':'')+summary);
   };
   // قراءة تلقائية فور فتح المعلومات
   listenBtn.classList.add('speaking'); listenBtn.textContent='⏹ إيقاف القراءة';
-  speak((data.title?data.title+'. ':'')+data.extract);
+  speak((data.title?data.title+'. ':'')+summary);
 }
 function closeInfo(){
   $('info-overlay').classList.remove('show');
