@@ -13,17 +13,17 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 :root{
-  --royal:#0d1a6e; --royal-deep:#020b2e; --blue-mid:#061450;
+  --royal:#17171f; --royal-deep:#0a0a0e; --blue-mid:#1c1c26;
   --gold:#c8860a; --gold-bright:#ffd700; --gold-24:#ffcc00; --gold-shine:#ffe566; --gold-deep:#b8730a;
   --gold-dim:rgba(255,215,0,0.18); --gold-glow:rgba(255,215,0,0.55);
   --text:#fff8e1; --text-dim:#d4b86a; --red:#e8445a; --green:#27ae60;
-  --card:rgba(2,9,40,0.88); --card-border:rgba(255,215,0,0.45);
+  --card:rgba(255,255,255,0.06); --card-border:rgba(255,215,0,0.4);
 }
 *,::before,::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--text);min-height:100vh;display:flex;justify-content:center;padding:28px 16px 60px;overflow-x:hidden;position:relative}
 
 /* ===== Background layers ===== */
-.bg-overlay{position:fixed;inset:0;background:linear-gradient(rgba(2,11,46,0.68) 0%,rgba(2,11,46,0.42) 45%,rgba(2,11,46,0.8) 100%),radial-gradient(70% 50% at 50% 0%,rgba(13,26,110,0.45) 0%,transparent 70%);z-index:0}
+.bg-overlay{position:fixed;inset:0;background:linear-gradient(rgba(6,6,10,0.6) 0%,rgba(8,8,12,0.35) 45%,rgba(6,6,10,0.72) 100%),radial-gradient(70% 50% at 50% 0%,rgba(60,55,40,0.22) 0%,transparent 70%);z-index:0}
 .bg-pattern{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cdefs%3E%3Cstyle%3E.g%7Bfill:none;stroke:rgba(212,160,23,0.06);stroke-width:0.7%7D%3C/style%3E%3C/defs%3E%3Cpath class='g' d='M50 0L100 50L50 100L0 50Z'/%3E%3Cpath class='g' d='M50 18L82 50L50 82L18 50Z'/%3E%3Ccircle class='g' cx='50' cy='50' r='22'/%3E%3Cpath class='g' d='M50 28L55 43H71L58 52L63 67L50 58L37 67L42 52L29 43H45Z'/%3E%3C/svg%3E");background-size:100px 100px;z-index:0;opacity:0.7}
 .center-orn{position:fixed;inset:0;z-index:1;pointer-events:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .bg-ornament{position:fixed;pointer-events:none;z-index:1;opacity:0.18}
@@ -42,7 +42,7 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 @keyframes fadeUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
 
 /* ===== Quran banner ===== */
-.quran-banner{background:linear-gradient(135deg,rgba(2,9,40,0.95),rgba(6,18,80,0.92));border:1px solid rgba(255,215,0,0.5);border-radius:18px;padding:18px 20px 14px;margin-bottom:24px;text-align:center;box-shadow:0 0 30px rgba(255,215,0,0.12),inset 0 1px 0 rgba(255,215,0,0.2);backdrop-filter:blur(16px);position:relative;overflow:hidden}
+.quran-banner{background:var(--card);border:1px solid rgba(255,215,0,0.5);border-radius:18px;padding:18px 20px 14px;margin-bottom:24px;text-align:center;box-shadow:0 0 30px rgba(255,215,0,0.12),inset 0 1px 0 rgba(255,215,0,0.2);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);position:relative;overflow:hidden}
 .quran-banner::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 60% at 50% 0%,rgba(255,215,0,0.06) 0%,transparent 70%);pointer-events:none}
 .bismillah{font-family:Amiri,serif;font-size:22px;color:var(--gold-shine);text-shadow:0 0 18px rgba(255,215,0,0.8),0 0 40px rgba(255,215,0,0.4);letter-spacing:2px;margin-bottom:10px;display:block}
 .quran-line-divider{width:120px;height:1px;margin:8px auto;background:linear-gradient(90deg,transparent,var(--gold-bright),transparent);opacity:.6}
@@ -94,7 +94,7 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 
 /* ===== Prayer ===== */
 .prayer-section{margin-bottom:20px}
-.prayer-card{background:linear-gradient(160deg,rgba(2,7,32,0.98) 0%,rgba(4,12,50,0.96) 100%);border:1.5px solid var(--gold-bright);border-radius:16px;padding:10px 12px 12px;box-shadow:0 0 0 1px rgba(255,215,0,0.12),0 0 22px 4px rgba(255,215,0,0.18),inset 0 0 30px rgba(255,215,0,0.04);backdrop-filter:blur(20px);position:relative}
+.prayer-card{background:var(--card);border:1.5px solid var(--gold-bright);border-radius:16px;padding:10px 12px 12px;box-shadow:0 0 0 1px rgba(255,215,0,0.12),0 0 22px 4px rgba(255,215,0,0.18),inset 0 0 30px rgba(255,215,0,0.04);backdrop-filter:blur(20px);position:relative}
 .prayer-card::before,.prayer-card::after{content:"✦";position:absolute;color:var(--gold-bright);font-size:10px;opacity:.7;top:5px}
 .prayer-card::before{left:8px}.prayer-card::after{right:8px}
 .prayer-card-header{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid rgba(255,215,0,0.2);position:relative}
@@ -110,12 +110,12 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 
 /* ===== Filter ===== */
 .filter-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.filter-btn{flex:1 1 auto;min-width:62px;padding:8px 10px;border-radius:10px;background:rgba(2,9,40,0.7);color:var(--text-dim);border:1px solid rgba(212,160,23,0.2);font-family:Tajawal,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;text-align:center;backdrop-filter:blur(10px)}
+.filter-btn{flex:1 1 auto;min-width:62px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.05);color:var(--text-dim);border:1px solid rgba(212,160,23,0.2);font-family:Tajawal,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;text-align:center;backdrop-filter:blur(10px)}
 .filter-btn.active{background:linear-gradient(135deg,rgba(255,215,0,0.22),rgba(255,215,0,0.08));color:var(--gold-bright);border-color:rgba(255,215,0,0.5);box-shadow:0 0 16px rgba(255,215,0,0.2)}
 .filter-btn:hover{border-color:rgba(255,215,0,0.4);color:var(--gold-bright)}
 
 /* ===== Map ===== */
-#map{height:280px;border-radius:16px;border:1px solid var(--card-border);overflow:hidden;margin-bottom:18px;box-shadow:0 2px 16px rgba(255,215,0,0.08),0 0 0 1px rgba(255,215,0,0.06);background:#0a1230}
+#map{height:280px;border-radius:16px;border:1px solid var(--card-border);overflow:hidden;margin-bottom:18px;box-shadow:0 2px 16px rgba(255,215,0,0.08),0 0 0 1px rgba(255,215,0,0.06);background:#0e0e13}
 .leaflet-popup-content-wrapper{background:var(--royal-deep);color:var(--text);border:1px solid var(--card-border);border-radius:12px}
 .leaflet-popup-content{margin:10px 14px;font-family:Tajawal,sans-serif}
 .leaflet-popup-content b{color:var(--gold-bright)}
@@ -141,7 +141,7 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 .sec-head{display:flex;align-items:center;gap:10px;font-family:Amiri,serif;font-size:16px;font-weight:700;color:var(--gold-bright);border-bottom:1px solid rgba(212,160,23,0.2);padding-bottom:10px;margin-bottom:16px}
 .sec-head span:last-child{font-size:14px}
 .store-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.store-item{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:14px 18px;transition:.2s;backdrop-filter:blur(12px);position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(255,215,0,0.08)}
+.store-item{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:14px 18px;transition:.2s;backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(255,215,0,0.08),inset 0 1px 0 rgba(255,255,255,0.08)}
 .store-item::after{content:"";position:absolute;right:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold-shine),var(--gold-bright),var(--gold-deep));border-radius:0 3px 3px 0;box-shadow:-2px 0 10px rgba(255,215,0,0.4)}
 .store-item:hover{transform:translateY(-3px);border-color:var(--gold-bright);box-shadow:0 8px 32px rgba(255,215,0,0.28)}
 .store-item.highlight{border-color:var(--gold-shine);box-shadow:0 0 0 2px var(--gold-shine),0 10px 36px rgba(255,215,0,0.45);transform:translateY(-3px)}
@@ -153,6 +153,27 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 .s-dist{font-size:11px;color:var(--gold);margin-top:4px;font-family:"DM Mono",monospace;direction:ltr;text-align:right}
 .btn-map{flex-shrink:0;padding:7px 12px;border-radius:10px;font-size:12px;font-weight:700;text-decoration:none;cursor:pointer;background:linear-gradient(135deg,rgba(212,160,23,0.22),rgba(212,160,23,0.08));color:var(--gold-bright);border:1px solid rgba(212,160,23,0.35);transition:.2s;white-space:nowrap}
 .btn-map:hover{background:rgba(212,160,23,0.3);box-shadow:0 0 14px rgba(212,160,23,0.3)}
+.s-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.btn-info{padding:7px 12px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,rgba(255,255,255,0.12),rgba(255,255,255,0.05));color:var(--gold-shine);border:1px solid rgba(255,215,0,0.35);transition:.2s;white-space:nowrap;font-family:Tajawal,sans-serif}
+.btn-info:hover{background:rgba(13,26,110,0.7);box-shadow:0 0 14px rgba(212,160,23,0.3)}
+
+/* ===== Wikipedia info modal ===== */
+.info-overlay{display:none;position:fixed;inset:0;background:rgba(6,6,10,0.7);backdrop-filter:blur(6px);z-index:9998;align-items:flex-end;justify-content:center}
+.info-overlay.show{display:flex}
+.info-modal{width:100%;max-width:500px;max-height:82vh;background:var(--card);border:1.5px solid var(--gold-bright);border-radius:20px 20px 0 0;box-shadow:0 -8px 40px rgba(255,215,0,0.2);padding:18px 20px 22px;overflow-y:auto;animation:infoUp .35s cubic-bezier(.16,1,.3,1) both;position:relative}
+@keyframes infoUp{0%{opacity:0;transform:translateY(40px)}100%{opacity:1;transform:translateY(0)}}
+.info-close{position:absolute;top:12px;left:14px;background:rgba(212,160,23,0.15);border:1px solid rgba(212,160,23,0.4);color:var(--gold-bright);width:30px;height:30px;border-radius:50%;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.info-title{font-family:Amiri,serif;font-size:20px;font-weight:700;color:var(--gold-shine);text-shadow:0 0 12px rgba(255,215,0,0.5);padding-left:38px;margin-bottom:4px}
+.info-type{font-size:12px;color:var(--gold);margin-bottom:12px}
+.info-thumb{width:100%;max-height:200px;object-fit:cover;border-radius:12px;margin-bottom:12px;border:1px solid var(--card-border)}
+.info-extract{font-size:14px;line-height:1.9;color:var(--text)}
+.info-state{font-size:13px;color:var(--text-dim);text-align:center;padding:20px 0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.info-actions{display:flex;gap:10px;margin-top:16px}
+.info-btn{flex:1;padding:11px;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;font-family:Tajawal,sans-serif;text-align:center;text-decoration:none;transition:.2s}
+.info-btn.listen{background:linear-gradient(135deg,#c8860a,#ffd700);color:#020b2e;border:none}
+.info-btn.listen.speaking{background:linear-gradient(135deg,#e8445a,#ff7a8a)}
+.info-btn.source{background:rgba(212,160,23,0.12);color:var(--gold-bright);border:1px solid rgba(212,160,23,0.4)}
+.info-src{font-size:10px;color:var(--text-dim);margin-top:14px;opacity:.7;text-align:center}
 .load-more-btn{width:100%;padding:12px;border-radius:12px;background:rgba(212,160,23,0.08);color:var(--gold-bright);border:1px solid rgba(212,160,23,0.25);font-family:Tajawal,sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;margin-top:4px}
 .load-more-btn:hover{background:rgba(212,160,23,0.18);box-shadow:0 0 20px rgba(212,160,23,0.15)}
 .state-msg{font-size:13px;color:var(--text-dim);text-align:center;padding:24px 12px;line-height:1.7}
@@ -337,6 +358,14 @@ body{font-family:Tajawal,sans-serif;background:var(--royal-deep);color:var(--tex
 
 <div id="toast"></div>
 
+<!-- WIKIPEDIA INFO MODAL -->
+<div class="info-overlay" id="info-overlay">
+  <div class="info-modal" id="info-modal">
+    <button class="info-close" id="info-close">✕</button>
+    <div id="info-body"></div>
+  </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 /* ============ State ============ */
@@ -441,7 +470,7 @@ async function queryAt(r){
     const t=e.tags||{};
     const type=catOf(t);
     const name=t['name:ar']||t.name||t['name:en']||DFLT[type];
-    return {name,type,hours:t.opening_hours||'',lat:la,lon:lo,dist:distM(userLat,userLon,la,lo)};
+    return {name,type,hours:t.opening_hours||'',lat:la,lon:lo,dist:distM(userLat,userLon,la,lo),wikipedia:t.wikipedia||'',wikidata:t.wikidata||''};
   }).filter(Boolean).filter(s=>{
     const k=s.name+'@'+Math.round(s.lat*1e4)+','+Math.round(s.lon*1e4);
     if(seen.has(k))return false; seen.add(k); return true;
@@ -497,13 +526,17 @@ function render(){
   }
   let html=autoExpanded?'<div class="auto-note">✨ تم توسيع النطاق تلقائياً إلى '+(r/1000)+' كم للعثور على أقرب المعالم</div>':'';
   const shown=list.slice(0,40);
+  window.currentShown=shown;
   shown.forEach((s,i)=>{
     html+='<div class="store-item" id="store-item-'+i+'"><div class="s-rank">'+(i+1)+'</div><div class="s-info">'+
       '<div class="s-name">'+esc(s.name)+'</div>'+
       '<div class="s-type">'+typeLbl(s.type)+'</div>'+
       (s.hours?'<div class="s-meta">🕒 '+esc(s.hours)+'</div>':'')+
       '<div class="s-dist">📍 '+distTxt(s.dist)+'</div></div>'+
-      '<a class="btn-map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+s.lat+'%2C'+s.lon+'">✦ خريطة</a></div>';
+      '<div class="s-actions">'+
+      '<button class="btn-info" data-idx="'+i+'">ℹ️ معلومات</button>'+
+      '<a class="btn-map" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+s.lat+'%2C'+s.lon+'">✦ خريطة</a>'+
+      '</div></div>';
   });
   html+=widenBtn;
   box.innerHTML=html;
@@ -515,6 +548,113 @@ function render(){
   drawMarkers(list);
 }
 function esc(s){return (s+'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ============ Wikipedia info ============ */
+const wikiCache={};
+function wikiParseTag(tag){
+  const m=/^([a-z-]+):(.+)$/.exec(tag||'');
+  return m?{lang:m[1],title:m[2]}:null;
+}
+async function wikiSummaryByTitle(lang,title){
+  const url='https://'+lang+'.wikipedia.org/api/rest_v1/page/summary/'+encodeURIComponent(title);
+  const r=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!r.ok) throw new Error('wiki');
+  const j=await r.json();
+  if(j.type==='disambiguation') throw new Error('disambiguation');
+  return j;
+}
+async function wikiFromWikidata(qid){
+  const url='https://www.wikidata.org/wiki/Special:EntityData/'+qid+'.json';
+  const r=await fetch(url);
+  if(!r.ok) throw new Error('wikidata');
+  const j=await r.json();
+  const ent=j.entities&&j.entities[qid];
+  const links=ent&&ent.sitelinks||{};
+  const pref=links.arwiki||links.enwiki||links.frwiki;
+  if(!pref) throw new Error('no-sitelink');
+  const lang=pref.site.replace('wiki','');
+  return wikiSummaryByTitle(lang,pref.title);
+}
+async function wikiBySearch(name){
+  const url='https://ar.wikipedia.org/w/api.php?action=query&list=search&srsearch='+encodeURIComponent(name)+'&format=json&origin=*&srlimit=1';
+  const r=await fetch(url);
+  if(!r.ok) throw new Error('search');
+  const j=await r.json();
+  const hit=j.query&&j.query.search&&j.query.search[0];
+  if(!hit) throw new Error('no-result');
+  return wikiSummaryByTitle('ar',hit.title);
+}
+async function fetchWikiSummary(s){
+  const key=s.wikipedia||s.wikidata||('name:'+s.name);
+  if(wikiCache[key]) return wikiCache[key];
+  let data=null;
+  try{
+    const wt=wikiParseTag(s.wikipedia);
+    if(wt) data=await wikiSummaryByTitle(wt.lang,wt.title);
+    else if(s.wikidata) data=await wikiFromWikidata(s.wikidata);
+    else data=await wikiBySearch(s.name);
+  }catch(e){
+    if(s.wikidata && !(wikiParseTag(s.wikipedia))){
+      try{ data=await wikiBySearch(s.name); }catch(e2){ data=null; }
+    } else data=null;
+  }
+  wikiCache[key]=data;
+  return data;
+}
+function infoStateHtml(msg,spin){
+  return '<div class="info-state">'+(spin?'<div class="spinner"></div>':'')+msg+'</div>';
+}
+async function showInfo(idx){
+  const s=(window.currentShown||[])[idx];
+  if(!s) return;
+  const overlay=$('info-overlay'), body=$('info-body');
+  overlay.classList.add('show');
+  body.innerHTML='<div class="info-title" style="padding-left:38px">'+esc(s.name)+'</div>'+
+    '<div class="info-type">'+typeLbl(s.type)+' · 📍 '+distTxt(s.dist)+'</div>'+
+    infoStateHtml('جارٍ جلب المعلومات من ويكيبيديا…',true);
+  let data=null;
+  try{ data=await fetchWikiSummary(s); }catch(e){ data=null; }
+  if(!overlay.classList.contains('show')) return; // closed meanwhile
+  if(!data || !data.extract){
+    body.innerHTML='<div class="info-title" style="padding-left:38px">'+esc(s.name)+'</div>'+
+      '<div class="info-type">'+typeLbl(s.type)+' · 📍 '+distTxt(s.dist)+'</div>'+
+      infoStateHtml('لم يتم العثور على معلومات ويكيبيديا لهذا المعلم.',false);
+    return;
+  }
+  const thumb=data.thumbnail&&data.thumbnail.source?'<img class="info-thumb" src="'+data.thumbnail.source+'" alt="">':'';
+  const extract=esc(data.extract||'');
+  const pageUrl=(data.content_urls&&data.content_urls.desktop&&data.content_urls.desktop.page)||'';
+  body.innerHTML=
+    '<div class="info-title">'+esc(data.title||s.name)+'</div>'+
+    '<div class="info-type">'+typeLbl(s.type)+' · 📍 '+distTxt(s.dist)+'</div>'+
+    thumb+
+    '<div class="info-extract" id="info-extract">'+extract+'</div>'+
+    '<div class="info-actions">'+
+      '<button class="info-btn listen" id="info-listen">🔊 استمع للمعلومات</button>'+
+      (pageUrl?'<a class="info-btn source" target="_blank" rel="noopener" href="'+pageUrl+'">ويكيبيديا ↗</a>':'')+
+    '</div>'+
+    '<div class="info-src">المصدر: ويكيبيديا</div>';
+  const listenBtn=$('info-listen');
+  listenBtn.onclick=()=>{
+    if(speaking){ stopTTS(); listenBtn.classList.remove('speaking'); listenBtn.textContent='🔊 استمع للمعلومات'; return; }
+    listenBtn.classList.add('speaking'); listenBtn.textContent='⏹ إيقاف القراءة';
+    speak((data.title?data.title+'. ':'')+data.extract);
+  };
+  // قراءة تلقائية فور فتح المعلومات
+  listenBtn.classList.add('speaking'); listenBtn.textContent='⏹ إيقاف القراءة';
+  speak((data.title?data.title+'. ':'')+data.extract);
+}
+function closeInfo(){
+  $('info-overlay').classList.remove('show');
+  stopTTS();
+}
+$('info-close').onclick=closeInfo;
+$('info-overlay').addEventListener('click',e=>{ if(e.target.id==='info-overlay') closeInfo(); });
+$('store-list').addEventListener('click',e=>{
+  const b=e.target.closest('.btn-info');
+  if(!b) return;
+  showInfo(parseInt(b.dataset.idx,10));
+});
 
 /* ============ Map ============ */
 function initMap(){
@@ -561,7 +701,7 @@ async function loadPrayer(){
 /* ============ TTS (robust chunked) ============ */
 let speaking=false, ttsResume=null;
 function pickArVoice(){const v=speechSynthesis.getVoices();return v.find(x=>/ar/i.test(x.lang))||null;}
-function stopTTS(){speaking=false;try{speechSynthesis.cancel();}catch(e){}clearInterval(ttsResume);$('tts-btn').classList.remove('speaking');$('tts-btn').textContent='🔊 اضغط لسماع المعالم القريبة';}
+function stopTTS(){speaking=false;try{speechSynthesis.cancel();}catch(e){}clearInterval(ttsResume);$('tts-btn').classList.remove('speaking');$('tts-btn').textContent='🔊 اضغط لسماع المعالم القريبة';const ib=document.getElementById('info-listen');if(ib){ib.classList.remove('speaking');ib.textContent='🔊 استمع للمعلومات';}}
 function speak(text){
   if(!('speechSynthesis' in window)){toast('المتصفح لا يدعم القراءة الصوتية');return;}
   speechSynthesis.cancel();
@@ -654,7 +794,7 @@ loadPrayer();      // immediate render with best-known coords
 
 <style>
 #pwa-banner{display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99999;
-background:linear-gradient(135deg,rgba(2,9,40,0.97),rgba(6,18,80,0.97));
+background:var(--card);
 border:1.5px solid rgba(255,215,0,0.6);border-radius:18px;padding:14px 18px;
 box-shadow:0 0 30px rgba(255,215,0,0.35);backdrop-filter:blur(20px);
 align-items:center;gap:12px;width:min(90vw,400px);font-family:Tajawal,sans-serif;direction:rtl;}
